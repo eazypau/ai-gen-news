@@ -1,0 +1,245 @@
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #f4f6f9;
+  --surface:    #ffffff;
+  --border:     #e2e8f0;
+  --text:       #1a202c;
+  --text-muted: #718096;
+  --accent:     #2563eb;
+  --accent-hover: #1d4ed8;
+  --radius:     10px;
+  --shadow:     0 2px 12px rgba(0,0,0,.08);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,.14);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Category colours */
+  --politics:    #dc2626;
+  --business:    #059669;
+  --technology:  #7c3aed;
+  --sports:      #ea580c;
+  --entertainment: #db2777;
+  --health:      #0891b2;
+  --lifestyle:   #65a30d;
+  --crime:       #b45309;
+  --environment: #16a34a;
+  --finance:     #0284c7;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.site-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  color: #fff;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+.site-header h1 { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -.5px; }
+.date-badge {
+  display: inline-block;
+  margin-top: .5rem;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+  padding: .25rem .9rem;
+  border-radius: 999px;
+  font-size: .85rem;
+  letter-spacing: .5px;
+}
+
+/* ── Filter bar ── */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.filter-btn {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  padding: .35rem .9rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 600;
+  transition: all .18s;
+  text-transform: capitalize;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── Grid ── */
+main.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+@media (max-width: 900px) { main.news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { main.news-grid { grid-template-columns: 1fr; } }
+
+/* ── Card ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.card-body { padding: 1.1rem; flex: 1; display: flex; flex-direction: column; }
+.card h3 { font-size: .97rem; font-weight: 700; line-height: 1.4; margin-bottom: .5rem; color: var(--text); }
+.card p  { font-size: .83rem; color: var(--text-muted); flex: 1; }
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .7rem 1.1rem;
+  border-top: 1px solid var(--border);
+  background: #fafafa;
+}
+.source { font-size: .75rem; color: var(--text-muted); font-weight: 600; }
+
+/* ── Category badges ── */
+.badge {
+  display: inline-block;
+  padding: .2rem .65rem;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: #fff;
+}
+.badge-politics     { background: var(--politics); }
+.badge-business     { background: var(--business); }
+.badge-technology   { background: var(--technology); }
+.badge-sports       { background: var(--sports); }
+.badge-entertainment{ background: var(--entertainment); }
+.badge-health       { background: var(--health); }
+.badge-lifestyle    { background: var(--lifestyle); }
+.badge-crime        { background: var(--crime); }
+.badge-environment  { background: var(--environment); }
+.badge-finance      { background: var(--finance); }
+
+/* ── Article page ── */
+.article-wrap {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 0 1rem 3rem;
+}
+.article-wrap .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: .87rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.article-wrap .back-link:hover { text-decoration: underline; }
+.article-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+.article-card h1 { font-size: clamp(1.2rem, 3vw, 1.75rem); line-height: 1.35; margin-bottom: 1rem; }
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+.article-body p { margin-bottom: 1.1rem; font-size: .97rem; line-height: 1.75; }
+.read-original {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background: var(--accent);
+  color: #fff;
+  padding: .6rem 1.4rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .9rem;
+  transition: background .18s;
+}
+.read-original:hover { background: var(--accent-hover); }
+
+/* ── Landing page ── */
+.landing {
+  max-width: 680px;
+  margin: 2.5rem auto;
+  padding: 0 1rem 3rem;
+}
+.landing h2 { font-size: 1.3rem; margin-bottom: 1.25rem; color: var(--text-muted); }
+.date-list { list-style: none; }
+.date-list li + li { border-top: 1px solid var(--border); }
+.date-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem .5rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: .97rem;
+  transition: color .15s;
+}
+.date-list a:hover { color: var(--accent); }
+.new-badge {
+  background: #dc2626;
+  color: #fff;
+  font-size: .65rem;
+  font-weight: 800;
+  padding: .15rem .5rem;
+  border-radius: 999px;
+  vertical-align: middle;
+  letter-spacing: .5px;
+}
+.arrow { color: var(--text-muted); }
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center;
+  padding: 1.25rem;
+  font-size: .78rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── Hidden state ── */
+.card.hidden { display: none; }
